@@ -27,20 +27,25 @@ We address **How to create a poster from a paper** and **How to evaluate poster.
 ## 📋 Table of Contents
 
 <!--- [📚 Introduction](#-introduction)-->
+
 - [🛠️ Installation](#-installation)
 - [🚀 Quick Start](#-quick-start)
 - [🔮 Evaluation](#-evaluation)
+
 ---
 
 ## 🛠️ Installation
+
 Our Paper2Poster supports both local deployment (via [vLLM](https://docs.vllm.ai/en/v0.6.6/getting_started/installation.html)) or API-based access (e.g., GPT-4o).
 
 **Python Environment**
+
 ```bash
 pip install -r requirements.txt
 ```
 
 **Install Libreoffice**
+
 ```bash
 sudo apt install libreoffice
 ```
@@ -48,6 +53,7 @@ sudo apt install libreoffice
 or, if you do **not** have sudo access, download `soffice` executable directly: https://www.libreoffice.org/download/download-libreoffice/, and add the executable directory to your `$PATH`.
 
 **Install poppler**
+
 ```bash
 conda install -c conda-forge poppler
 ```
@@ -63,12 +69,15 @@ OPENAI_API_KEY=<your_openai_api_key>
 ---
 
 ## 🚀 Quick Start
+
 Create a folder named `{paper_name}` under `{dataset_dir}`, and place your paper inside it as a PDF file named `paper.pdf`.
+
 ```
 📁 {dataset_dir}/
 └── 📁 {paper_name}/
     └── 📄 paper.pdf
 ```
+
 To use open-source models, you need to first deploy them using [vLLM](https://docs.vllm.ai/en/v0.6.6/getting_started/installation.html), ensuring the port is correctly specified in the `get_agent_config()` function in [`utils/wei_utils.py`](utils/wei_utils.py).
 
 - [High Performance] Generate a poster with `GPT-4o`:
@@ -108,7 +117,9 @@ python -m PosterAgent.new_pipeline \
 PosterAgent **supports flexible combination of LLM / VLM**, feel free to try other options, or customize your own settings in `get_agent_config()` in [`utils/wei_utils.py`](utils/wei_utils.py).
 
 ## 🔮 Evaluation
+
 Download Paper2Poster evaluation dataset via:
+
 ```bash
 python -m PosterAgent.create_dataset
 ```
@@ -116,6 +127,7 @@ python -m PosterAgent.create_dataset
 In evaluation, papers are stored under a directory called `Paper2Poster-data`.
 
 To evaluate a generated poster with **PaperQuiz**:
+
 ```bash
 python -m Paper2Poster-eval.eval_poster_pipeline \
     --paper_name="${paper_name}" \
@@ -124,6 +136,7 @@ python -m Paper2Poster-eval.eval_poster_pipeline \
 ```
 
 To evaluate a generated poster with **VLM-as-Judge**:
+
 ```bash
 python -m Paper2Poster-eval.eval_poster_pipeline \
     --paper_name="${paper_name}" \
@@ -132,6 +145,7 @@ python -m Paper2Poster-eval.eval_poster_pipeline \
 ```
 
 To evaluate a generated poster with other statistical metrics (such as visual similarity, PPL, etc):
+
 ```bash
 python -m Paper2Poster-eval.eval_poster_pipeline \
     --paper_name="${paper_name}" \
@@ -140,12 +154,14 @@ python -m Paper2Poster-eval.eval_poster_pipeline \
 ```
 
 If you want to create a PaperQuiz for your own paper:
+
 ```bash
 python -m Paper2Poster-eval.create_paper_questions \
     --paper_folder="Paper2Poster-data/${paper_name}"
 ```
 
 ## ❤ Acknowledgement
+
 We extend our gratitude to [🐫CAMEL](https://github.com/camel-ai/camel), [🦉OWL](https://github.com/camel-ai/owl), [Docling](https://github.com/docling-project/docling), [PPTAgent](https://github.com/icip-cas/PPTAgent) for providing their codebases.
 
 ## 📖 Citation
@@ -154,12 +170,12 @@ Please kindly cite our paper if you find this project helpful.
 
 ```bibtex
 @misc{paper2poster,
-      title={Paper2Poster: Towards Multimodal Poster Automation from Scientific Papers}, 
+      title={Paper2Poster: Towards Multimodal Poster Automation from Scientific Papers},
       author={Wei Pang and Kevin Qinghong Lin and Xiangru Jian and Xi He and Philip Torr},
       year={2025},
       eprint={2505.21497},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2505.21497}, 
+      url={https://arxiv.org/abs/2505.21497},
 }
 ```
