@@ -174,6 +174,12 @@ def get_agent_config(model_type):
             'model_platform': ModelPlatformType.OPENROUTER,
             'model_config': OpenRouterConfig().as_dict(),
         }
+    elif model_type == 'openai/gpt-4o-mini':
+        agent_config = {
+            'model_type': "openai/gpt-4o-mini",
+            'model_platform': ModelPlatformType.OPENROUTER,
+            'model_config': OpenRouterConfig().as_dict(),
+        }
     else:
         agent_config = {
             'model_type': model_type,
